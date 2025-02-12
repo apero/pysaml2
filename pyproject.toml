@@ -20,10 +20,8 @@ classifiers = [
 ]
 requires-python = ">= 3.9"
 dependencies = [
-  "cryptography >=3.1",
+  "cryptography >=40.0",
   "defusedxml",
-  "pyopenssl <24.3.0",
-  "python-dateutil",
   "requests >=2.0.0,<3.0.0",  # ^2 means compatible with 2.x
   "xmlschema >=2.0.0,<3.0.0"
 ]

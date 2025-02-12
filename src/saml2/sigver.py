@@ -18,8 +18,20 @@ from time import mktime
 from urllib import parse
 from uuid import uuid4 as gen_random_key
 
-from OpenSSL import crypto
 import dateutil
+
+
+# importlib.resources was introduced in python 3.7
+# files API from importlib.resources introduced in python 3.9
+if sys.version_info[:2] >= (3, 9):
+    from importlib.resources import files as _resource_files
+else:
+    from importlib_resources import files as _resource_files
+
+from urllib import parse
+
+from cryptography import x509
+import pytz
 
 from saml2 import ExtensionElement
 from saml2 import SamlBase
@@ -373,14 +385,14 @@ def active_cert(key):
     """
     try:
         cert_str = pem_format(key)
-        cert = crypto.load_certificate(crypto.FILETYPE_PEM, cert_str)
+        cert = x509.load_pem_x509_certificate(cert_str)
     except AttributeError:
         return False
 
-    now = datetime.now(timezone.utc)
-    valid_from = dateutil.parser.parse(cert.get_notBefore())
-    valid_to = dateutil.parser.parse(cert.get_notAfter())
-    active = not cert.has_expired() and valid_from <= now < valid_to
+    now = datetime.datetime.now(datetime.UTC)
+    valid_from = cert.not_valid_before_utc
+    valid_to = cert.not_valid_after_utc
+    active = valid_from <= now < valid_to
     return active
 
 
