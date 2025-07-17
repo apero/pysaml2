@@ -18,8 +18,6 @@ from time import mktime
 from urllib import parse
 from uuid import uuid4 as gen_random_key
 
-import dateutil
-
 
 # importlib.resources was introduced in python 3.7
 # files API from importlib.resources introduced in python 3.9
@@ -31,7 +29,6 @@ else:
 from urllib import parse
 
 from cryptography import x509
-import pytz
 
 from saml2 import ExtensionElement
 from saml2 import SamlBase
