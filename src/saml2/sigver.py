@@ -10,7 +10,6 @@ import os
 import re
 from datetime import datetime
 from datetime import timezone
-from importlib.resources import files as _resource_files
 from subprocess import PIPE
 from subprocess import Popen
 from tempfile import NamedTemporaryFile
@@ -21,9 +20,9 @@ from uuid import uuid4 as gen_random_key
 
 # importlib.resources was introduced in python 3.7
 # files API from importlib.resources introduced in python 3.9
-if sys.version_info[:2] >= (3, 9):
+try:
     from importlib.resources import files as _resource_files
-else:
+except ImportError:
     from importlib_resources import files as _resource_files
 
 from urllib import parse
