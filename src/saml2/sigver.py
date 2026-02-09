@@ -8,10 +8,8 @@ import itertools
 import logging
 import os
 import re
-from datetime import datetime
-from datetime import timezone
-from subprocess import PIPE
-from subprocess import Popen
+from datetime import datetime, timezone
+from subprocess import PIPE, Popen
 from tempfile import NamedTemporaryFile
 from time import mktime
 from urllib import parse
@@ -385,7 +383,7 @@ def active_cert(key):
     except AttributeError:
         return False
 
-    now = datetime.datetime.now(datetime.timezone.utc)
+    now = datetime.now(timezone.utc)
     valid_from = cert.not_valid_before_utc
     valid_to = cert.not_valid_after_utc
     active = valid_from <= now < valid_to
