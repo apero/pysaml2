@@ -18,9 +18,9 @@ keywords = [
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">= 3.9"
+requires-python = ">= 3.13"
 dependencies = [
-  "cryptography >=40.0",
+  "cryptography >=46.0.5",
   "defusedxml",
   "requests >=2.0.0,<3.0.0",  # ^2 means compatible with 2.x
   "xmlschema >=2.0.0,<3.0.0"
