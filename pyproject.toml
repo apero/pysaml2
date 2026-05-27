@@ -22,7 +22,7 @@ requires-python = ">= 3.10"
 dependencies = [
   "cryptography >=46.0.5",
   "defusedxml",
-  "requests >=2.0.0,<3.0.0",  # ^2 means compatible with 2.x
+  "requests >=2.33.0,<3.0.0",  # ^2 means compatible with 2.x
   "xmlschema >=2.0.0,<3.0.0"
 ]
 
